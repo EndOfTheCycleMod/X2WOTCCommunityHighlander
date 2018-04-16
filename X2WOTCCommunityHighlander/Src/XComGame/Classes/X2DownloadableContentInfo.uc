@@ -447,3 +447,12 @@ static function MatineeGetPawnFromSaveData(XComUnitPawn UnitPawn, XComGameState_
 static function UpdateWeaponAttachments(out array<WeaponAttachment> Attachments, XComGameState_Item ItemState)
 {}
 /// End Issue #240
+
+/// <summary>
+/// Called from XComGameInfo::SetGameType
+/// lets mods override the game info class for a given map
+/// </summary>
+static function OverrideGameInfoClass(string MapName, string Options, string Portal, out class<GameInfo> GameInfoClass)
+{
+
+}

@@ -189,6 +189,8 @@ static event class<GameInfo> SetGameType(string MapName, string Options, string 
 		GameInfoClass = class<GameInfo>(DynamicLoadObject(GameInfoClassToUse, class'Class'));
 	}
 
+	DLCOverrideGameInfoClass(MapName, Options, Portal, GameInfoClass);
+
 	if (GameInfoClass != none)
 	{
 		return GameInfoClass;
@@ -197,6 +199,18 @@ static event class<GameInfo> SetGameType(string MapName, string Options, string 
 	{
 		`log("SetGameType: ERROR! failed loading requested gameinfo '" @ GameInfoClassToUse @ "', using default gameinfo.");
 		return default.Class;
+	}
+}
+
+static function DLCOverrideGameInfoClass(string MapName, string Options, string Portal, out class<GameInfo> GameInfoClass)
+{
+	local array<X2DownloadableContentInfo> DLCInfos; 
+	local int i; 
+	
+	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
+	for(i = 0; i < DLCInfos.Length; ++i)
+	{
+		DLCInfos[i].OverrideGameInfoClass(MapName, Options, Portal, GameInfoClass);
 	}
 }
 
