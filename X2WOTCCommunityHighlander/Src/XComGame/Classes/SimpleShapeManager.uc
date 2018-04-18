@@ -15,7 +15,7 @@ struct ShapePair
 
 var array<ShapePair> mShapes;
 
-private function ShapePair AddShape(StaticMesh StaticMesh, bool bPersistent)
+/*private */function ShapePair AddShape(StaticMesh StaticMesh, bool bPersistent)
 {
 	local int index, i;
 	local ShapePair tempPair;
